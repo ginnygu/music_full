@@ -2,6 +2,7 @@ import express from "express";
 import "dotenv/config";
 import logger from "morgan";
 import mongoose from "mongoose";
+import accountRouters from "./routes/accounts/accountRouters";
 
 const port = process.env.PORT || 3001;
 
@@ -19,6 +20,7 @@ app.use(
 		extended: false,
 	})
 );
+app.use("/accounts", accountRouters);
 
 app.listen(port, () => {
 	console.log(`listening to port ${port}`);
