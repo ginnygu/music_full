@@ -1,6 +1,7 @@
 import express from "express";
 const router = express.Router();
 import { createAccount } from "./controller/accountController";
+import { validateInput } from "../middleware/validateInput";
 
 interface account {
 	firstName: string;
@@ -14,6 +15,10 @@ interface apiResponse<Data> {
 }
 interface empty {}
 
-router.post<empty, apiResponse<account>>("/create-account", createAccount);
+router.post<empty, apiResponse<account>>(
+	"/create-account",
+	validateInput,
+	createAccount
+);
 
 export default router;
